@@ -6,7 +6,7 @@ export default function editUser(userId, name, image, description) {
   validateImage(image)
   validateText(description)
 
-  return fetch(`http://localhost:8000/users`, {
+  return fetch(`https://instaflan-backend.onrender.com/users`, {
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${userId}`,
