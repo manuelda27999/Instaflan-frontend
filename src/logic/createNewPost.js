@@ -5,7 +5,7 @@ export default function createNewPost(author, image, text) {
   validateImage(image)
   validateText(text)
 
-  return fetch('http://localhost:8000/posts', {
+  return fetch('https://instaflan-backend.onrender.com/posts', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${author}`,

@@ -5,7 +5,7 @@ export default function registerUser(name, email, password) {
   validateEmail(email)
   validatePassword(password)
 
-  return fetch('http://localhost:8000/users', {
+  return fetch('https://instaflan-backend.onrender.com/users', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, password }),

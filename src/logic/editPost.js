@@ -6,7 +6,7 @@ export default function editPost(userId, postId, image, text) {
   validateImage(image)
   validateText(text)
 
-  return fetch(`http://localhost:8000/posts/${postId}`, {
+  return fetch(`https://instaflan-backend.onrender.com/posts/${postId}`, {
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${userId}`,
