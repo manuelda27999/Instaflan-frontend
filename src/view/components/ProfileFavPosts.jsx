@@ -143,8 +143,8 @@ export default function ProfileFavPosts() {
         }
     }
 
-    return <section className="">
-        {posts?.map(post => <article key={post.id} className="bg-color5 mb-3">
+    return <section className="w-full sm:flex sm:flex-col sm:items-center">
+        {posts?.map(post => <article key={post.id} className="bg-color5 mb-3 sm:w-96">
             <div className="flex justify-between items-center">
                 <div className="flex justify-start items-center pl-3 py-1">
                     <img className="w-12 h-12 rounded-full object-cover mr-2" src={post.author.image} alt={post.author.name} />

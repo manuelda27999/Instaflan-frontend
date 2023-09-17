@@ -34,7 +34,7 @@ export default function EditUserModal(props) {
             <p className="m-1 text-color1 font-semibold">Name</p>
             <input className='p-2 rounded-xl border-color2 border-2' id="name" type="text" defaultValue={user.name ? user.name : undefined} />
             <p className="m-1 text-color1 font-semibold">Image</p>
-            <input className='p-2 rounded-xl border-color2 border-2' id="image" type="url" defaultValue={user.image ? user.image : undefined} />
+            <input placeholder='Insert URL of image' className='p-2 rounded-xl border-color2 border-2' id="image" type="url" defaultValue={user.image ? user.image : undefined} />
             <p className="m-1 text-color1 font-semibold">Description</p>
             <textarea
                 className='p-1 rounded-xl border-color2 border-2'

@@ -26,8 +26,8 @@ export default function Login() {
         }
     }
 
-    return <main className="bg-color5 flex flex-col justify-start h-screen p-5">
-        <form onSubmit={handleLoginSubmit} className="" >
+    return <main className="bg-color5 flex flex-col sm:items-center sm:justify-center justify-start h-screen p-5">
+        <form onSubmit={handleLoginSubmit} className="sm:w-96 sm:flex sm:flex-col sm:justify-center" >
             <h2 className="text-5xl text-color1 mb-6 font-semibold">Login</h2>
             <div className="flex flex-col justify-start items-start mb-4">
                 <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="email">Email:</label>
