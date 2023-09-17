@@ -35,7 +35,7 @@ export default function CreatePostModal(props) {
                 rows="5"
             ></textarea>
             <p className="m-1 text-color1 font-semibold">Image</p>
-            <input className="p-2 rounded-xl border-color2 border-2" id="image" type="url" />
+            <input placeholder="Insert URL of image" className="p-2 rounded-xl border-color2 border-2" id="image" type="url" />
             <div className="flex justify-around mt-5 w-full">
                 <button type="submit" className="bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">
                     Create

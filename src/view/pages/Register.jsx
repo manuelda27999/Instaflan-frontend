@@ -24,8 +24,8 @@ export default function Register() {
         }
     }
 
-    return <main className="bg-color5 flex flex-col justify-start h-screen p-5">
-        <form onSubmit={handleRegister} className="" action="">
+    return <main className="bg-color5 flex flex-col sm:items-center sm:justify-center justify-start h-screen p-5">
+        <form onSubmit={handleRegister} className="sm:w-96 sm:flex sm:flex-col sm:justify-center" action="">
             <h2 className="text-5xl text-color1 mb-6 font-semibold">Register</h2>
             <div className="flex flex-col justify-start items-start mb-4">
                 <label className="block text-xl font-semibold text-color1 mb-1 ml-1" htmlFor="name">Name:</label>
