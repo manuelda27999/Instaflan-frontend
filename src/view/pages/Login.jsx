@@ -1,8 +1,11 @@
 import authenticateUser from "../../logic/authenticateUser"
 import context from "../../context"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import LoadingModal from "../modals/LoadingModal"
 
 export default function Login() {
+    const [modal, setModal] = useState(false)
 
     const handleLoginSubmit = event => {
         event.preventDefault()
@@ -11,10 +14,13 @@ export default function Login() {
         const password = event.target.password.value
 
         try {
+            setModal(true)
+
             authenticateUser(email, password)
                 .then((result) => {
                     context.token = result
 
+                    setModal(false)
                     context.navigate('/home')
                 })
                 .catch((error) => {
@@ -51,5 +57,6 @@ export default function Login() {
         </form>
 
         <Link className="text-color1 text-xl fixed bottom-3 left-1/2 transform -translate-x-1/2 block hover:underline" to='/register' >Go to register</Link>
+        {modal === true && <LoadingModal />}
     </main>
 }
