@@ -142,7 +142,7 @@ export default function Explorer() {
             <h2 className="text-color1 font-semibold mb-2">Maybe you know</h2>
             {users?.map(user => <article key={user.id} className="flex mb-4 w-80 bg-color5 rounded-full justify-between items-center pr-5 pl-2 pt-1 pb-1">
                 <div className="flex items-center">
-                    <img className="w-12 h-12 rounded-full object-cover mr-2" src={user.image} alt={user.name} />
+                    <img className="w-12 h-12 rounded-full object-cover mr-2" src={user.image ? user.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt={user.name} />
                     <a onClick={() => handleProfile(event, user.id)} className="font-semibold text-color1 text-xl">{user.name}</a>
                 </div>
                 <button onClick={() => handleFollowUser(user.id)} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3 edit-profile-button">Follow</button>
@@ -164,7 +164,7 @@ export default function Explorer() {
                 <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
                 {post.comments.length > 0 && <div className="border-x-color5 border-x-8 bg-white p-1">
                     {post?.comments.map(comment => <article className="flex items-start m-1" key={comment.id}>
-                        <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
+                        <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image ? comment.author.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="" />
                         <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold whitespace-nowrap" href="">{comment.author.name + ':'}</a>
                         <p className="text-xs ml-1">{comment.text}</p>
                     </article>)}

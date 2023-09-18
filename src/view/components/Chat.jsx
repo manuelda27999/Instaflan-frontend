@@ -97,7 +97,7 @@ export default function Chat() {
     return <section className="flex flex-col">
         <div className="fixed w-full bg-white flex justify-between items-center border-b-2 border-gray-400 py-1 px-2">
             <div className="flex items-center">
-                <img className="w-12 h-12 rounded-full object-cover" src={chat?.users[0].image} alt="user profile image" />
+                <img className="w-12 h-12 rounded-full object-cover" src={chat?.users[0].image ? chat?.users[0].image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="user profile image" />
                 <a onClick={(event) => handleProfile(event, chat?.users[0].id)} className="m-2 text-color1 font-semibold ml-3" href="">{chat?.users[0].name}</a>
             </div>
             <button onClick={handleBack} className="button bg-color4 text-white border-none rounded-xl px-3 py-1 font-bold text-lg cursor-pointer transition duration-300 hover:bg-color3">Back</button>

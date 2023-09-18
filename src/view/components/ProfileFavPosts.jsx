@@ -157,7 +157,7 @@ export default function ProfileFavPosts() {
             <p className="m-2 text-color1 font-semibold ml-3">{post.text}</p>
             {post.comments.length > 0 && <div className="border-x-color5 border-x-8 bg-white p-1">
                 {post?.comments.map(comment => <article className="flex items-start m-1" key={comment.id}>
-                    <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image} alt="" />
+                    <img className="w-4 h-4 rounded-full object-cover mr-1" src={comment.author.image ? comment.author.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="" />
                     <a onClick={(event) => handleProfile(event, comment.author.id)} className="text-xs text-color1 font-bold whitespace-nowrap" href="">{comment.author.name + ':'}</a>
                     <p className="text-xs ml-1">{comment.text}</p>
                 </article>)}
