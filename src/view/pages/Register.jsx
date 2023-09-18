@@ -1,7 +1,11 @@
 import registerUser from "../../logic/registerUser"
 import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import LoadingModal from "../modals/LoadingModal"
 
 export default function Register() {
+    const [modal, setModal] = useState(false)
+
     const navigate = useNavigate()
 
     const handleRegister = event => {
@@ -12,8 +16,11 @@ export default function Register() {
         const password = event.target.password.value
 
         try {
+            setModal(true)
+
             registerUser(name, email, password)
                 .then(() => {
+                    setModal(false)
                     navigate('/login')
                 })
                 .catch((error) => {
@@ -52,5 +59,7 @@ export default function Register() {
             <button className="bg-color4 text-white border-none rounded-xl px-4 py-3 font-bold text-xl cursor-pointer transition duration-300 hover:bg-color3">Register</button>
         </form>
         <Link className="text-color1 text-xl fixed bottom-3 left-1/2 transform -translate-x-1/2 block hover:underline" to='/login' >Go to Login</Link>
+
+        {modal === true && <LoadingModal />}
     </main>
 }
