@@ -61,13 +61,13 @@ export default function Notifications() {
         {notifications?.length === 0 && <h2 className="text-gray-500 mt-6 text-xl font-bold">Notifications empty</h2>}
         {notifications?.map(notification => <article key={notification.id} className="w-full">
             {notification.text === 'Follow' && <div className="flex items-center p-1 border-b-gray-400 border-b-2">
-                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image} alt="" />
+                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image ? notification.user.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="" />
                 <a onClick={(event) => handleProfile(event, notification.user.id)} className="text-center m-2 text-color2 font-semibold ml-3" href="">{notification.user.name}</a>
                 <p>follow you </p>
                 <button onClick={() => handleDeleteNotification(notification.id)} className="ml-auto rounded-lg hover:bg-color4 hover:scale-110 ">🗑️</button>
             </div>}
             {notification.text === 'Like' && <div className="flex items-center p-1 border-b-gray-400 border-b-2">
-                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image} alt="" />
+                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image ? notification.user.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="" />
                 <a onClick={(event) => handleProfile(event, notification.user.id)} className="text-center m-2 text-color2 font-semibold ml-3" href="">{notification.user.name}</a>
                 <p>like your post</p>
                 <div className="flex flex-col ml-4 items-center border-3">
@@ -76,7 +76,7 @@ export default function Notifications() {
                 <button onClick={() => handleDeleteNotification(notification.id)} className="ml-auto rounded-lg hover:bg-color4 hover:scale-110 ">🗑️</button>
             </div>}
             {notification.text === 'Comment' && <div className="flex items-center p-1 border-b-gray-400 border-b-2">
-                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image} alt="" />
+                <img className="w-12 h-12 rounded-full object-cover" src={notification.user.image ? notification.user.image : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'} alt="" />
                 <a onClick={(event) => handleProfile(event, notification.user.id)} className="text-center m-2 text-color2 font-semibold ml-3" href="">{notification.user.name}</a>
                 <p>comment your post</p>
                 <div className="flex flex-col ml-4 items-center border-3">
