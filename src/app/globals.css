@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-color1: #d35400;
+    --color-color2: #e67e22; 
+    --color-color3: #f39c12; 
+    --color-color4: #fdcb6e; 
+    --color-color5: #f9e79f;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(-4%, -6%, 0) scale(1.05);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.65;
+    }
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@layer base {
+    button {
+        @apply cursor-pointer;
+    }
+
+    button:disabled {
+        @apply cursor-not-allowed;
+    }
+}
+
+@layer utilities {
+    .animate-float {
+        animation: float 14s ease-in-out infinite;
+    }
+
+    .animate-glow {
+        animation: glow 7s ease-in-out infinite;
+    }
+}
