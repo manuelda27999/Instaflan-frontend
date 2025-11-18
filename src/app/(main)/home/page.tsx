@@ -43,7 +43,7 @@ export default function AllPosts() {
     retrievePosts()
       .then((posts) => {
         setPosts(posts);
-        console.log(posts);
+        setFirstLoading(false);
       })
       .catch((error: unknown) => {
         const message = error instanceof Error ? error.message : String(error);

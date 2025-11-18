@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import authenticateUser from "@/lib/api/authenticateUser";
 import { useModal } from "@/context/ModalContext";
+import LoadingModal from "@/app/components/modals/LoadingModal";
 
 type LoginState = { error: string | null };
 
@@ -40,75 +41,78 @@ function LoginForm() {
   }, [state.error, openModal]);
 
   return (
-    <form
-      action={loginAction}
-      className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/75 p-8 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.9)] backdrop-blur-xl transition duration-500 hover:border-white/20 sm:p-10"
-    >
-      <div className="pointer-events-none absolute -top-20 right-[-4rem] h-48 w-48 rounded-full bg-emerald-300/20 blur-3xl animate-glow" />
-      <div className="pointer-events-none absolute bottom-[-6rem] left-[-2rem] h-72 w-72 rounded-full bg-sky-300/10 blur-3xl animate-float" />
+    <>
+      {isPending && <LoadingModal />}
+      <form
+        action={loginAction}
+        className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/75 p-8 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.9)] backdrop-blur-xl transition duration-500 hover:border-white/20 sm:p-10"
+      >
+        <div className="pointer-events-none absolute -top-20 right-[-4rem] h-48 w-48 rounded-full bg-emerald-300/20 blur-3xl animate-glow" />
+        <div className="pointer-events-none absolute bottom-[-6rem] left-[-2rem] h-72 w-72 rounded-full bg-sky-300/10 blur-3xl animate-float" />
 
-      <div className="relative z-10 space-y-8">
-        <header className="space-y-2 text-center sm:text-left">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Welcome back
-          </h2>
-          <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
-            Sign in to continue curating your feed and stay in sync with the
-            community.
+        <div className="relative z-10 space-y-8">
+          <header className="space-y-2 text-center sm:text-left">
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Welcome back
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+              Sign in to continue curating your feed and stay in sync with the
+              community.
+            </p>
+          </header>
+
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium text-slate-200"
+                htmlFor="email"
+              >
+                Email address
+              </label>
+              <div className="relative">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium text-slate-200"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="********"
+                  className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <SubmitButton pending={isPending} />
+
+          <p className="text-center text-xs text-slate-400 sm:text-left">
+            By continuing you agree to our{" "}
+            <span className="text-slate-200">Terms</span> and{" "}
+            <span className="text-slate-200">Privacy Policy</span>.
           </p>
-        </header>
-
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label
-              className="text-sm font-medium text-slate-200"
-              htmlFor="email"
-            >
-              Email address
-            </label>
-            <div className="relative">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label
-              className="text-sm font-medium text-slate-200"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <div className="relative">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="********"
-                className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
-                required
-              />
-            </div>
-          </div>
         </div>
-
-        <SubmitButton pending={isPending} />
-
-        <p className="text-center text-xs text-slate-400 sm:text-left">
-          By continuing you agree to our{" "}
-          <span className="text-slate-200">Terms</span> and{" "}
-          <span className="text-slate-200">Privacy Policy</span>.
-        </p>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }
 
