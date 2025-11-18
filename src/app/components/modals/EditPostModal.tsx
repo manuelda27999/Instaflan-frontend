@@ -28,8 +28,6 @@ export default function EditPostModal(props: EditPostModalProps) {
 
   const { openModal } = useModal();
 
-  console.log("Uploaded Image URL:", uploadedImageUrl);
-
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {

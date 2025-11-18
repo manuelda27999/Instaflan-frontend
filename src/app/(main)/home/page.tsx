@@ -6,6 +6,7 @@ import Link from "next/link";
 import Post from "@/app/components/Post";
 import toggleFavPost from "@/lib/api/toggleFavPost";
 import { useModal } from "@/context/ModalContext";
+import LoadingModal from "@/app/components/modals/LoadingModal";
 
 interface Post {
   id: string;
@@ -33,12 +34,16 @@ export default function AllPosts() {
   const { openModal } = useModal();
 
   const [posts, setPosts] = useState<Post[]>([]);
+  const [firstLoading, setFirstLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const loadPosts = useCallback(() => {
+    setFirstLoading(true);
+
     retrievePosts()
       .then((posts) => {
         setPosts(posts);
+        console.log(posts);
       })
       .catch((error: unknown) => {
         const message = error instanceof Error ? error.message : String(error);
@@ -86,7 +91,7 @@ export default function AllPosts() {
 
   return (
     <section className="space-y-8 pb-14">
-      {posts.length === 0 && !isPending && (
+      {posts.length === 0 && !firstLoading && (
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
           <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
             Feed warming up
@@ -157,9 +162,7 @@ export default function AllPosts() {
         </button>
       </div>
 
-      {isPending && posts.length === 0 && (
-        <p className="text-center text-sm text-slate-400">Loading feed…</p>
-      )}
+      {firstLoading && posts.length === 0 && <LoadingModal />}
     </section>
   );
 }

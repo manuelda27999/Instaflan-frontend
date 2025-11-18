@@ -9,6 +9,7 @@ import retrieveChat from "@/lib/api/retrieveChat";
 import sendMessage from "@/lib/api/sendMessage";
 import retrieveUser from "@/lib/api/retrieveUser";
 import ProfileImage from "@/app/components/ProfileImage";
+import LoadingModal from "@/app/components/modals/LoadingModal";
 
 interface Chat {
   id: string;
@@ -27,6 +28,7 @@ interface Message {
 export default function Chat() {
   const [chat, setChat] = useState<Chat | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [firstLoading, setFirstLoading] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
 
   const pathname = usePathname();
@@ -40,12 +42,15 @@ export default function Chat() {
 
     let active = true;
 
+    setFirstLoading(true);
+
     startTransition(() => {
       Promise.all([retrieveUser(), retrieveChat(chatId)])
         .then(([user, newChat]) => {
           if (!active) return;
           setCurrentUserId(user?.id ?? null);
           setChat(newChat);
+          setFirstLoading(false);
         })
         .catch((error: unknown) => {
           const message =
@@ -122,6 +127,8 @@ export default function Chat() {
 
   return (
     <section className="relative flex flex-col items-center pb-18 ">
+      {firstLoading && !currentUserId && <LoadingModal />}
+
       <div className="fixed w-5/6 max-w-4xl rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
