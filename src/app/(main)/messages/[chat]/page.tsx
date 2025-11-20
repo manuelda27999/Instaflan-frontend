@@ -29,6 +29,9 @@ export default function Chat() {
   const [chat, setChat] = useState<Chat | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [firstLoading, setFirstLoading] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  console.log(isMobile);
   const [isPending, startTransition] = useTransition();
 
   const pathname = usePathname();
@@ -36,6 +39,17 @@ export default function Chat() {
   const { openModal } = useModal();
 
   const chatId = useMemo(() => pathname.split("/")[2] ?? "", [pathname]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 640px)");
+
+    setIsMobile(query.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    query.addEventListener("change", handler);
+
+    return () => query.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     if (!chatId) return;
@@ -126,10 +140,10 @@ export default function Chat() {
     participants.length > 0 ? participants : chat?.users ?? [];
 
   return (
-    <section className="relative flex flex-col items-center pb-18 ">
+    <section className="relative flex flex-col items-center pb-16 ">
       {firstLoading && !currentUserId && <LoadingModal />}
 
-      <div className="fixed w-5/6 max-w-4xl rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-6">
+      <div className="fixed w-full sm:w-5/6 max-w-4xl sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-2 sm:py-3 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="flex -space-x-3">
@@ -265,23 +279,23 @@ export default function Chat() {
 
       <form
         onSubmit={handleSendMessage}
-        className="fixed inset-x-0 bottom-28 z-40 px-4 sm:px-6"
+        className="fixed inset-x-0 bottom-21 sm:bottom-24 z-40 px-0.5 pb-0.5 sm:px-6"
       >
-        <div className="mx-auto flex w-5/6 max-w-4xl items-center gap-3 rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_30px_80px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl">
+        <div className="flex w-full max-w-4xl items-center gap-3 rounded-4xl sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-2 shadow-[0_30px_80px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl">
           <input
             id="message"
             name="message"
             placeholder="Craft a sweet reply…"
-            className="flex-1 rounded-full border border-transparent bg-transparent px-3 py-2 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/60 focus:outline-none focus:ring-0"
+            className="flex-1 rounded-full border border-transparent bg-transparent px-3 py-1 sm:py-2 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/60 focus:outline-none focus:ring-0"
             type="text"
             autoComplete="off"
           />
           <button
             disabled={isPending}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-teal-300 to-sky-300 px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg transition hover:shadow-xl hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-teal-300 to-sky-300 px-3 sm:px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg transition hover:shadow-xl hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
             type="submit"
           >
-            {isPending ? "Sending…" : "Send"}
+            {!isMobile && (isPending ? "Sending…" : "Send")}
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -289,7 +303,7 @@ export default function Chat() {
               strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="h-4 w-4"
+              className="h-5 w-5"
             >
               <path d="M22 2L11 13" />
               <path d="M22 2L15 22l-4-9-9-4 20-7z" />

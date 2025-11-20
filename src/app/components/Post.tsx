@@ -55,10 +55,10 @@ export default function Post(props: PostProps) {
         if (!active) return;
         setCurrentUserId(user?.id ?? null);
       })
-        .catch((error: unknown) => {
-          const message = error instanceof Error ? error.message : String(error);
-          openModal("error-modal", { message });
-        });
+      .catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        openModal("error-modal", { message });
+      });
 
     return () => {
       active = false;
@@ -82,7 +82,7 @@ export default function Post(props: PostProps) {
   }
 
   return (
-    <article className="relative mb-8 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.8)] backdrop-blur-xl">
+    <article className="relative mb-8 overflow-hidden sm:rounded-3xl sm:border sm:border-white/10 bg-white/5 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.8)] backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-x-8 top-0 h-32 rounded-full bg-emerald-300/10 blur-3xl" />
       <div className="relative z-10">
         <header className="flex items-center justify-between px-6 pt-6">

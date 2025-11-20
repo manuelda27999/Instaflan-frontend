@@ -51,7 +51,7 @@ export default function Messages() {
   return (
     <>
       {firstLoading && chats.length === 0 && <LoadingModal />}
-      <section className="space-y-6 pb-20">
+      <section className="">
         {chats.length === 0 ? (
           <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
             <p className="text-xs uppercase tracking-[0.35em] text-slate-300">
@@ -65,7 +65,7 @@ export default function Messages() {
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="sm:space-y-4">
             {chats.map((chat) => {
               const hasUnread =
                 Boolean(currentUserId) &&
@@ -81,7 +81,7 @@ export default function Messages() {
                 <Link
                   key={chat.id}
                   href={`/messages/${chat.id}`}
-                  className={`group flex items-center justify-between gap-4 rounded-3xl border px-4 py-4 shadow-[0_25px_70px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl transition sm:px-6 ${
+                  className={`group flex items-center justify-between gap-4 sm:rounded-3xl border px-4 py-4 shadow-[0_25px_70px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl transition sm:px-6 ${
                     hasUnread
                       ? "border-emerald-300/50 bg-emerald-400/10 text-white"
                       : "border-white/10 bg-white/5 text-slate-100 hover:border-emerald-300/40 hover:bg-white/10"

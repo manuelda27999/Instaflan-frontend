@@ -150,9 +150,9 @@ export default function Explorer() {
       {firstLoading && users.length === 0 && posts.length === 0 && (
         <LoadingModal />
       )}
-      <section className="space-y-12 pb-10">
-        <article className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl sm:p-8">
-          <header className="flex flex-wrap items-end justify-between gap-3">
+      <section className="space-y-12">
+        <article className="space-y-6 sm:rounded-3xl border-y-2 sm:border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl sm:p-8">
+          <header className="flex flex-wrap items-center justify-between gap-3 ">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
                 Fresh connections
@@ -217,8 +217,8 @@ export default function Explorer() {
           )}
         </article>
 
-        <article className="space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-70px_rgba(14,165,233,0.65)] backdrop-blur-xl sm:p-8">
-          <header className="flex flex-wrap items-end justify-between gap-3">
+        <article className="sm:rounded-3xl sm:border border-y-2 border-white/10 bg-white/5 sm:p-6 shadow-[0_40px_120px_-70px_rgba(14,165,233,0.65)] backdrop-blur-xl">
+          <header className="flex flex-wrap items-center justify-between gap-3 py-6 px-3 shadow-[0_10px_20px_-12px_rgba(14,165,233,0.8)]">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
                 Curated for you

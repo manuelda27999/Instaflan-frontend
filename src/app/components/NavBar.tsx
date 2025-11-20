@@ -8,6 +8,7 @@ import retrieveUser from "@/lib/api/retrieveUser";
 import retrieveChats from "@/lib/api/retrieveChats";
 import ProfileImage from "./ProfileImage";
 import { useModal } from "@/context/ModalContext";
+import retrieveNotifications from "@/lib/api/retrieveNotifications";
 
 interface User {
   id: string;
@@ -21,11 +22,26 @@ interface Chat {
   unreadFor: string[];
 }
 
+interface Notification {
+  id: string;
+  text: string;
+  user: {
+    id: string;
+    name: string;
+    image: string;
+  };
+  post?: {
+    image: string;
+  };
+}
+
 export default function NavBar() {
   const pathname = usePathname();
   const [userIdProfile, setUserIdProfile] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [messagesNotReading, setMessagesNotReading] = useState<number>(0);
+  const [notificationsNotReading, setNotificationsNotReading] =
+    useState<number>(0);
   const { openModal } = useModal();
 
   useEffect(() => {
@@ -50,6 +66,16 @@ export default function NavBar() {
           openModal("error-modal", { message });
         });
     };
+
+    retrieveNotifications()
+      .then((notifications) => {
+        setNotificationsNotReading(notifications.length);
+        return;
+      })
+      .catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        openModal("error-modal", { message });
+      });
 
     retrieveUser()
       .then((userData) => {
@@ -167,9 +193,9 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 px-4 pb-4 sm:px-6">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-slate-900/70 px-3 py-3 shadow-[0_-35px_120px_-70px_rgba(56,189,248,0.65)] backdrop-blur-xl">
-        <ul className="flex items-center justify-between">
+    <nav className="fixed inset-x-0 bottom-0 z-40 sm:pb-4 sm:px-6">
+      <div className="mx-auto max-w-5xl sm:rounded-3xl border border-white/10 bg-slate-900/70 px-3 py-3 shadow-[0_-35px_120px_-70px_rgba(56,189,248,0.65)] backdrop-blur-xl">
+        <ul className="flex items-center justify-between gap-2">
           {navItems.map((item) => {
             const active = item.isActive(pathname);
             const baseClasses =
@@ -190,8 +216,15 @@ export default function NavBar() {
                   prefetch={item.label !== "Profile" || Boolean(userIdProfile)}
                 >
                   {item.label === "Messages" && messagesNotReading > 0 && (
-                    <span className="absolute -top-1 right-3 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-emerald-400 px-1 text-[0.65rem] font-semibold text-slate-900 shadow-lg">
+                    <span className="absolute top-1 right-1 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-emerald-400 px-1 text-[0.65rem] font-semibold text-slate-900 shadow-lg">
                       {messagesNotReading > 9 ? "9+" : messagesNotReading}
+                    </span>
+                  )}
+                  {item.label === "Activity" && notificationsNotReading > 0 && (
+                    <span className="absolute top-1 right-1 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-emerald-400 px-1 text-[0.65rem] font-semibold text-slate-900 shadow-lg">
+                      {notificationsNotReading > 9
+                        ? "9+"
+                        : notificationsNotReading}
                     </span>
                   )}
                   <div

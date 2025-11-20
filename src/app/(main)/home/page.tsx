@@ -90,7 +90,7 @@ export default function AllPosts() {
   }
 
   return (
-    <section className="space-y-8 pb-14">
+    <section className="space-y-6 sm:space-y-8 pb-9">
       {posts.length === 0 && !firstLoading && (
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
           <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
@@ -134,7 +134,7 @@ export default function AllPosts() {
           />
         ))}
 
-      <div className="fixed w-11/12 max-w-4xl bottom-28 z-30 flex flex-col items-end">
+      <div className="fixed w-full pr-2.5 max-w-4xl bottom-24 sm:bottom-28 z-30 flex flex-col items-end">
         <button
           onClick={() =>
             openModal("create-post-modal", {

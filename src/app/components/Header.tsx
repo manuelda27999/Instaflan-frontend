@@ -45,8 +45,8 @@ export default function Header() {
   const tagLine = taglineMap[page] ?? "Stay connected";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-20 px-4 pt-4 sm:px-6">
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 shadow-[0_35px_120px_-60px_rgba(56,189,248,0.6)] backdrop-blur-xl sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-20 sm:pt-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-between sm:rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 shadow-[0_35px_120px_-60px_rgba(56,189,248,0.6)] backdrop-blur-xl sm:px-6">
         <div className="flex items-center gap-4">
           {/* <div className="h-12 w-12 hidden sm:flex items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-300/80 via-teal-300/70 to-sky-400/80 shadow-[0_12px_50px_-20px_rgba(56,189,248,0.8)]">
             {page === "Instaflan" ? (
