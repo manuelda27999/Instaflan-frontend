@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import retrieveChats from "@/lib/api/retrieveChats";
-import retrieveUser from "@/lib/api/retrieveUser";
 import ProfileImage from "@/app/components/ProfileImage";
 import { useModal } from "@/context/ModalContext";
+import { useUserContext } from "@/context/UserInfoContext";
 import LoadingModal from "@/app/components/modals/LoadingModal";
 
 interface Chat {
@@ -29,16 +29,20 @@ export default function Messages() {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [firstLoading, setFirstLoading] = useState<boolean>(false);
   const { openModal } = useModal();
+  const { userInfo } = useUserContext();
 
   useEffect(() => {
     handleChargeUserAndChats();
   }, [openModal]);
 
+  useEffect(() => {
+    if (userInfo) setCurrentUserId(userInfo?.id);
+  }, [userInfo]);
+
   function handleChargeUserAndChats() {
     setFirstLoading(true);
-    Promise.all([retrieveUser(), retrieveChats()])
-      .then(([user, chats]) => {
-        setCurrentUserId(user?.id ?? null);
+    retrieveChats()
+      .then((chats) => {
         setChats(chats);
         setFirstLoading(false);
       })
@@ -117,13 +121,13 @@ export default function Messages() {
                       </p>
                     </div>
                   </div>
-                    <div className="flex items-center gap-3">
-                      {hasUnread && (
-                        <span className="rounded-full bg-emerald-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-800">
-                          New
-                        </span>
-                      )}
-                      <span className="hidden items-center justify-center rounded-2xl border border-slate-200 bg-white p-2 text-slate-600 transition group-hover:border-emerald-200 group-hover:bg-emerald-50 group-hover:text-emerald-700 sm:inline-flex">
+                  <div className="flex items-center gap-3">
+                    {hasUnread && (
+                      <span className="rounded-full bg-emerald-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-800">
+                        New
+                      </span>
+                    )}
+                    <span className="hidden items-center justify-center rounded-2xl border border-slate-200 bg-white p-2 text-slate-600 transition group-hover:border-emerald-200 group-hover:bg-emerald-50 group-hover:text-emerald-700 sm:inline-flex">
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"

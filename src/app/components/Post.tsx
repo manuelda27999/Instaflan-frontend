@@ -35,6 +35,7 @@ interface PostProps {
   updatePosts: () => void;
   handleToggleFavPostProps: (postId: string) => void;
   index?: number;
+  isPending: boolean;
 }
 
 export default function Post(props: PostProps) {
@@ -101,38 +102,42 @@ export default function Post(props: PostProps) {
               </Link>
             </div>
           </div>
-
-          <button
-            onClick={() => props.handleToggleFavPostProps(post.id)}
-            className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] transition ${
-              post.fav
-                ? "border-emerald-300 bg-emerald-50 text-emerald-700 shadow-sm"
-                : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
-            }`}
-          >
-            <span
-              className={`flex h-8 w-8 items-center justify-center rounded-full ${
+          {props.isPending ? (
+            <p className="loader-small"></p>
+          ) : (
+            <button
+              disabled={props.isPending}
+              onClick={() => props.handleToggleFavPostProps(post.id)}
+              className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] transition ${
                 post.fav
-                  ? "bg-gradient-to-br from-emerald-300 via-teal-300 to-sky-300 text-slate-900"
-                  : "bg-slate-100 text-slate-700"
+                  ? "border-emerald-300 bg-emerald-50 text-emerald-700 shadow-sm"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
               }`}
             >
-              <svg
-                viewBox="0 0 24 24"
-                fill={post.fav ? "currentColor" : "none"}
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
+              <span
+                className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                  post.fav
+                    ? "bg-gradient-to-br from-emerald-300 via-teal-300 to-sky-300 text-slate-900"
+                    : "bg-slate-100 text-slate-700"
+                }`}
               >
-                <path d="M12 20.25l-7.05-7.05a4.5 4.5 0 010-6.36 4.5 4.5 0 016.36 0L12 7.53l.69-.69a4.5 4.5 0 016.36 6.36L12 20.25z" />
-              </svg>
-            </span>
-            <span className="hidden group-hover:tracking-[0.35em] sm:inline">
-              {post.fav ? "Liked" : "Like"}
-            </span>
-          </button>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill={post.fav ? "currentColor" : "none"}
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                >
+                  <path d="M12 20.25l-7.05-7.05a4.5 4.5 0 010-6.36 4.5 4.5 0 016.36 0L12 7.53l.69-.69a4.5 4.5 0 016.36 6.36L12 20.25z" />
+                </svg>
+              </span>
+              <span className="hidden group-hover:tracking-[0.35em] sm:inline">
+                {post.fav ? "Liked" : "Like"}
+              </span>
+            </button>
+          )}
         </header>
 
         <div className="mt-5 px-6">

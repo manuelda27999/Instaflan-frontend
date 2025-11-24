@@ -110,6 +110,7 @@ export default function ProfilePosts() {
           updatePosts={updatePosts}
           handleToggleFavPostProps={handletoggleFavPost}
           index={index}
+          isPending={isPending}
         />
       ))}
 

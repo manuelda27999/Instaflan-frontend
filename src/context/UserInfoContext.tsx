@@ -90,7 +90,7 @@ export const UserInfoProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const userContext = () => {
+export const useUserContext = () => {
   const context = useContext(UserInfoContext);
   if (context === null) {
     throw new Error("useUserInfo must be used within a UserInfoProvider");

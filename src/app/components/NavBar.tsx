@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import ProfileImage from "./ProfileImage";
-import { userContext } from "@/context/UserInfoContext";
+import { useUserContext } from "@/context/UserInfoContext";
 
 interface UserInfo {
   id: string;
@@ -20,7 +20,7 @@ export default function NavBar() {
   const [user, setUser] = useState<UserInfo | null>(null);
   console.log("UserInfo in NavBar:", user);
 
-  const { userInfo, updateUserInfo } = userContext();
+  const { userInfo, updateUserInfo } = useUserContext();
 
   useEffect(() => {
     if (userInfo) {
@@ -30,7 +30,7 @@ export default function NavBar() {
 
   useEffect(() => {
     updateUserInfo();
-  }, []);
+  }, [updateUserInfo]);
 
   const profileHref = useMemo(
     () => (user ? `/profile/${user.id}/posts` : "#"),

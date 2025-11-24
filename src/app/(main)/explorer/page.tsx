@@ -244,6 +244,7 @@ export default function Explorer() {
                 updatePosts={handleUpdatePosts}
                 handleToggleFavPostProps={handletoggleFavPost}
                 index={index}
+                isPending={isPending}
               />
             ))}
           </div>

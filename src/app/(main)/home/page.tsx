@@ -131,6 +131,7 @@ export default function AllPosts() {
             updatePosts={loadPosts}
             handleToggleFavPostProps={handleToggleFavPost}
             index={index}
+            isPending={isPending}
           />
         ))}
 
