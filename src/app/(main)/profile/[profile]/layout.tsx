@@ -103,8 +103,8 @@ export default function ProfileLayout({
     <>
       {!userProfile && !currentUserId && <LoadingModal />}
 
-      <section className="space-y-8 ">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 px-5 py-6 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-8 sm:py-8">
+      <section className="">
+        <div className="relative overflow-hidden sm:rounded-3xl sm:mb-3 border border-white/10 bg-white/5 px-5 py-6 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-8 sm:py-8">
           <div className="pointer-events-none absolute inset-x-10 top-0 h-40 rounded-full bg-emerald-300/10 blur-3xl" />
           <div className="relative z-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -190,7 +190,7 @@ export default function ProfileLayout({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-3 rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_30px_90px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:mb-3 sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_30px_90px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
           <button
             onClick={() => router.push(`/profile/${userIdProfile}/posts`)}
             className={`inline-flex items-center gap-2 rounded-full border  px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-emerald-200/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 ${
@@ -215,15 +215,14 @@ export default function ProfileLayout({
           </button>
         </div>
 
-        <main className="space-y-6">{children}</main>
+        <main className="">{children}</main>
 
         {currentUserId === userIdProfile && (
-          <div className="fixed w-11/12 max-w-4xl bottom-28 z-30 flex flex-col items-end">
+          <div className="fixed w-full pr-2.5 max-w-4xl bottom-24 sm:bottom-28 z-30 flex flex-col items-end">
             <button
               onClick={() =>
                 openModal("create-post-modal", {
                   callback: (close: () => void) => {
-                    router.refresh();
                     close();
                   },
                 })
