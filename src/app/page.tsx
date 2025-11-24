@@ -1,17 +1,10 @@
 "use client";
 
-import React, { use } from "react";
-import { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
-import { userContext } from "@/context/UserInfoContext";
 
 export default function LandingPage() {
   const router = useRouter();
-  const { updateUserInfo } = userContext();
-
-  useEffect(() => {
-    updateUserInfo();
-  }, []);
 
   return (
     <main className="relative flex min-h-screen w-full items-center justify-center bg-white px-6 py-16 text-slate-800 sm:px-12 lg:px-20">

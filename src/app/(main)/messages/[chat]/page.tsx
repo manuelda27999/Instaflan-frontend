@@ -228,7 +228,7 @@ export default function Chat() {
                 <div
                   className={`flex flex-col rounded-3xl border px-3 py-2 text-sm shadow-sm ${
                     isOwn
-                      ? "border-emerald-300/60 bg-gradient-to-r from-emerald-300/20 via-teal-300/20 to-sky-300/25 text-emerald-50"
+                      ? "border-emerald-300/60 bg-gradient-to-r from-emerald-300/20 via-teal-300/20 to-sky-300/25 text-slate-800"
                       : "border-slate-200 bg-white text-slate-800"
                   }`}
                 >

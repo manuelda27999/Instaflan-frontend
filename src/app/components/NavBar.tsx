@@ -20,13 +20,17 @@ export default function NavBar() {
   const [user, setUser] = useState<UserInfo | null>(null);
   console.log("UserInfo in NavBar:", user);
 
-  const { userInfo } = userContext();
+  const { userInfo, updateUserInfo } = userContext();
 
   useEffect(() => {
     if (userInfo) {
       setUser(userInfo);
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    updateUserInfo();
+  }, []);
 
   const profileHref = useMemo(
     () => (user ? `/profile/${user.id}/posts` : "#"),
