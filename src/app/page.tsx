@@ -32,7 +32,7 @@ export default function LandingPage() {
               onClick={() => router.push("/login")}
               className="group relative flex w-full items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-base font-semibold text-white shadow-sm transition duration-200 hover:bg-orange-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-200 sm:w-auto sm:px-8 sm:text-lg"
             >
-              <span className="relative z-10">Sing in</span>
+              <span className="relative z-10">Sign in</span>
             </button>
             <button
               type="button"
