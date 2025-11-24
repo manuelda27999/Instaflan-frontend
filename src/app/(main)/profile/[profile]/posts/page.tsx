@@ -88,16 +88,16 @@ export default function ProfilePosts() {
   }
 
   return (
-    <section className="space-y-8 pb-9">
+    <section className="sm:space-y-8 ">
       {posts.length === 0 && !isPending && (
-        <div className="sm:rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-300">
+        <div className="sm:rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm backdrop-blur-xl">
+          <p className="text-xs uppercase tracking-[0.35em] text-slate-600">
             Nothing shared yet
           </p>
-          <h2 className="mt-4 text-2xl font-semibold text-white">
+          <h2 className="mt-4 text-2xl font-semibold text-slate-900">
             No posts available
           </h2>
-          <p className="mt-3 text-sm text-slate-300">
+          <p className="mt-3 text-sm text-slate-600">
             When this profile publishes a new post, it will appear right here.
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function ProfilePosts() {
       ))}
 
       {isPending && posts.length === 0 && (
-        <p className="mt-4 text-center text-sm text-slate-400">
+        <p className="mt-4 text-center text-sm text-slate-500">
           Loading posts…
         </p>
       )}

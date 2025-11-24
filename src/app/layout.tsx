@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-300/20 selection:text-emerald-100">
+      <body className="antialiased min-h-screen bg-slate-50 text-slate-800">
         <ModalProvider>{children}</ModalProvider>
       </body>
     </html>

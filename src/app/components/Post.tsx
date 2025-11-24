@@ -82,21 +82,20 @@ export default function Post(props: PostProps) {
   }
 
   return (
-    <article className="relative mb-8 overflow-hidden sm:rounded-3xl sm:border sm:border-white/10 bg-white/5 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.8)] backdrop-blur-xl">
-      <div className="pointer-events-none absolute inset-x-8 top-0 h-32 rounded-full bg-emerald-300/10 blur-3xl" />
+    <article className="relative overflow-hidden sm:rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div className="relative z-10">
         <header className="flex items-center justify-between px-6 pt-6">
           <div className="flex items-center gap-4 min-w-0">
             <Link
               href={`/profile/${post.author.id}/posts`}
-              className="h-12 w-12 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]"
+              className="h-12 w-12 rounded-full overflow-hidden border border-emerald-300/40 shadow-[0_0_24px_-14px_rgba(249,115,22,0.4)]"
             >
               <ProfileImage name={post.author.name} image={post.author.image} />
             </Link>
             <div className="min-w-0">
               <Link
                 href={`/profile/${post.author.id}/posts`}
-                className="text-lg font-bold text-white transition hover:text-emerald-200 truncate"
+                className="text-lg font-bold text-slate-900 transition hover:text-emerald-600 truncate"
               >
                 {post.author.name}
               </Link>
@@ -107,15 +106,15 @@ export default function Post(props: PostProps) {
             onClick={() => props.handleToggleFavPostProps(post.id)}
             className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] transition ${
               post.fav
-                ? "border-emerald-300/60 bg-emerald-400/15 text-emerald-100 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]"
-                : "border-white/15 bg-white/10 text-slate-300 hover:border-emerald-300/45 hover:bg-emerald-400/10 hover:text-emerald-100"
+                ? "border-emerald-300 bg-emerald-50 text-emerald-700 shadow-sm"
+                : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
             }`}
           >
             <span
               className={`flex h-8 w-8 items-center justify-center rounded-full ${
                 post.fav
-                  ? "bg-gradient-to-br from-emerald-300/60 via-teal-300/60 to-sky-300/60 text-slate-900"
-                  : "bg-white/10 text-slate-100"
+                  ? "bg-gradient-to-br from-emerald-300 via-teal-300 to-sky-300 text-slate-900"
+                  : "bg-slate-100 text-slate-700"
               }`}
             >
               <svg
@@ -143,7 +142,7 @@ export default function Post(props: PostProps) {
             }
             width={800}
             height={600}
-            className="w-full rounded-2xl border border-white/10 bg-slate-950/40 object-cover"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-100 object-cover"
             src={post.image || "/images/image-not-available.webp"}
             alt={post.text || `${post.author.name}'s post`}
             onError={(event) => {
@@ -155,8 +154,8 @@ export default function Post(props: PostProps) {
 
         <div className="space-y-4 px-6 py-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm font-semibold text-slate-200">
-              <span className="text-emerald-200">{post.likes}</span> favorites
+            <p className="text-sm font-semibold text-slate-700">
+              <span className="text-emerald-600">{post.likes}</span> favorites
             </p>
             <button
               onClick={() =>
@@ -168,7 +167,7 @@ export default function Post(props: PostProps) {
                   },
                 })
               }
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-teal-300 to-sky-300 px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg transition hover:shadow-xl hover:brightness-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/40"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -186,21 +185,21 @@ export default function Post(props: PostProps) {
           </div>
 
           {post.text && (
-            <p className="text-sm leading-relaxed text-slate-200">
+            <p className="text-sm leading-relaxed text-slate-700">
               {post.text}
             </p>
           )}
 
           {post.comments.length > 0 && (
-            <div className="space-y-3 rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300">
+            <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-600">
                 Comments
               </p>
               {post.comments.map((comment) => (
                 <article className="flex items-center gap-3" key={comment.id}>
                   <Link
                     href={`/profile/${comment.author.id}/posts`}
-                    className="h-8 w-8 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]"
+                    className="h-8 w-8 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_24px_-14px_rgba(249,115,22,0.35)]"
                   >
                     <ProfileImage
                       name={comment.author.name}
@@ -209,12 +208,12 @@ export default function Post(props: PostProps) {
                   </Link>
                   <div className="flex-1">
                     <Link
-                      className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-200 transition hover:text-emerald-100"
+                      className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700 transition hover:text-emerald-600"
                       href={`/profile/${comment.author.id}/posts`}
                     >
                       {comment.author.name}
                     </Link>
-                    <p className="mt-1 text-xs text-slate-200">
+                    <p className="mt-1 text-xs text-slate-700">
                       {comment.text}
                     </p>
                   </div>
@@ -238,7 +237,7 @@ export default function Post(props: PostProps) {
                     },
                   })
                 }
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200"
               >
                 Edit
               </button>
@@ -252,7 +251,7 @@ export default function Post(props: PostProps) {
                     },
                   })
                 }
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-rose-200 transition hover:border-rose-300/50 hover:bg-rose-400/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-rose-300/30"
+                className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-rose-600 transition hover:bg-rose-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-rose-200"
               >
                 Delete
               </button>

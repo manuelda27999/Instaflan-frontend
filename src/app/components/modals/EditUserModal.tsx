@@ -53,15 +53,15 @@ export default function EditUserModal(props: EditUserModalProps) {
   const handleCancelEditUser = () => props.onHideEditUser();
 
   return (
-    <div className="fixed z-50 top-0 left-0 w-screen h-screen flex items-center justify-center bg-slate-950/80 px-4 backdrop-blur-lg">
+    <div className="fixed z-50 top-0 left-0 w-screen h-screen flex items-center justify-center bg-white/80 px-4 backdrop-blur-lg">
       {user && (
         <form
           onSubmit={handleSubmitUser}
-          className="w-full max-w-md space-y-6 rounded-3xl border border-white/10 bg-white/5 px-8 py-4 shadow-[0_40px_120px_-60px_rgba(56,189,248,0.8)] backdrop-blur-xl"
+          className="w-full max-w-md space-y-6 rounded-3xl border border-slate-200 bg-white px-8 py-4 shadow-sm backdrop-blur-xl"
         >
           <header className="space-y-2 text-center">
-            <h3 className="text-2xl font-semibold text-white">Edit profile</h3>
-            <p className="text-sm text-slate-300">
+            <h3 className="text-2xl font-semibold text-slate-900">Edit profile</h3>
+            <p className="text-sm text-slate-600">
               Update your display name, avatar, and bio to reflect your vibe.
             </p>
           </header>
@@ -69,7 +69,7 @@ export default function EditUserModal(props: EditUserModalProps) {
           <div className="space-y-3">
             <label
               htmlFor="name"
-              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300"
+              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600"
             >
               Name
             </label>
@@ -78,7 +78,7 @@ export default function EditUserModal(props: EditUserModalProps) {
               name="name"
               type="text"
               defaultValue={user.name || ""}
-              className="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-500 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
               placeholder="Your display name"
               required
             />
@@ -87,13 +87,13 @@ export default function EditUserModal(props: EditUserModalProps) {
           <div className="space-y-3">
             <label
               htmlFor="image"
-              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300"
+              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600"
             >
               Profile Image
             </label>
-            <div className="flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-slate-900/40 p-4 text-center">
+            <div className="flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center">
               {uploadedImageUrl ? (
-                <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-black/20">
                   <Image
                     src={uploadedImageUrl}
                     alt="Post preview"
@@ -103,7 +103,7 @@ export default function EditUserModal(props: EditUserModalProps) {
                   />
                 </div>
               ) : (
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-slate-600">
                   No image selected yet. Upload one.
                 </p>
               )}
@@ -134,7 +134,7 @@ export default function EditUserModal(props: EditUserModalProps) {
                   return (
                     <button
                       onClick={handleOnClick}
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 cursor-pointer"
                     >
                       Upload from device
                     </button>
@@ -147,7 +147,7 @@ export default function EditUserModal(props: EditUserModalProps) {
           <div className="space-y-3">
             <label
               htmlFor="description"
-              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300"
+              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600"
             >
               Bio
             </label>
@@ -156,7 +156,7 @@ export default function EditUserModal(props: EditUserModalProps) {
               name="description"
               rows={4}
               defaultValue={user.description || ""}
-              className="w-full max-h-28 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
+              className="w-full max-h-28 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-500 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
               placeholder="Share your sweetest story…"
               required
             />
@@ -166,7 +166,7 @@ export default function EditUserModal(props: EditUserModalProps) {
             <button
               onClick={handleCancelEditUser}
               type="button"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
             >
               Cancel
             </button>

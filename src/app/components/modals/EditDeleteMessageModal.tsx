@@ -62,20 +62,20 @@ export default function EditDeleteMessageModal(
   const handleCancelEditDeleteMessage = () => props.onHideEditDeletePost();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 px-4 backdrop-blur-lg">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 px-4 backdrop-blur-lg">
       {message && (
         <form
           onSubmit={handleEditMessage}
-          className="w-full max-w-sm space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-60px_rgba(56,189,248,0.8)] backdrop-blur-xl sm:p-8"
+          className="w-full max-w-sm space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-xl sm:p-8"
         >
           <header className="space-y-2 text-center">
-            <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
+            <p className="text-xs uppercase tracking-[0.4em] text-slate-600">
               Tweak your reply
             </p>
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl font-semibold text-slate-900">
               Edit or delete message
             </h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-slate-600">
               Keep conversations polished by updating or removing this note.
             </p>
           </header>
@@ -83,7 +83,7 @@ export default function EditDeleteMessageModal(
           <div className="space-y-3">
             <label
               htmlFor="text"
-              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300"
+              className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600"
             >
               Message
             </label>
@@ -92,7 +92,7 @@ export default function EditDeleteMessageModal(
               name="text"
               rows={3}
               defaultValue={message.text || ""}
-              className="w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-500 focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
               placeholder="Update your message…"
               required
             />
@@ -119,7 +119,7 @@ export default function EditDeleteMessageModal(
             <button
               onClick={handleCancelEditDeleteMessage}
               type="button"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
             >
               Cancel
             </button>

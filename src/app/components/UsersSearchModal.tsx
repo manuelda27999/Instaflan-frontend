@@ -71,7 +71,7 @@ export default function UsersSearchModal() {
   return (
     <div className="relative flex items-center justify-end" ref={containerRef}>
       <div className="relative w-44 sm:w-56">
-        <span className="pointer-events-none absolute left-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center text-slate-300/80">
+        <span className="pointer-events-none absolute left-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center text-slate-600/80">
           <svg
             aria-hidden
             className="h-4 w-4"
@@ -87,37 +87,37 @@ export default function UsersSearchModal() {
         <input
           onChange={handleSearchUsers}
           onFocus={() => setUsersList(true)}
-          className="w-full rounded-full border border-white/15 bg-white/10 pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300/50 focus:outline-none focus:ring-4 focus:ring-emerald-300/20"
+          className="w-full rounded-full border border-slate-200 bg-white pl-9 pr-3 py-2 text-sm text-slate-800 placeholder:text-slate-500 transition focus:border-emerald-200 focus:outline-none focus:ring-4 focus:ring-emerald-100"
           type="text"
           placeholder="Search creators"
         />
       </div>
 
       {usersList && (
-        <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-72 space-y-2 rounded-2xl border border-white/10 bg-slate-900/85 p-3 shadow-[0_30px_70px_-35px_rgba(15,23,42,0.9)] backdrop-blur-2xl">
+        <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-72 space-y-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg shadow-slate-200/40">
           {isSearching ? (
-            <div className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-6">
-              <p className="text-sm font-medium text-slate-200">Searching…</p>
+            <div className="flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-6">
+              <p className="text-sm font-medium text-slate-700">Searching…</p>
             </div>
           ) : users?.length > 0 ? (
             users.map((user) => (
               <Link
                 key={user.id}
                 href={`/profile/${user.id}/posts`}
-                className="group flex items-center gap-3 rounded-xl border border-transparent bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/10"
+                className="group flex items-center gap-3 rounded-xl border border-transparent bg-white px-3 py-2 text-sm font-medium text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50"
                 onClick={() => setUsersList(false)}
               >
-                <div className="h-12 w-12 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]">
+                <div className="h-12 w-12 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(249,115,22,0.35)]">
                   <ProfileImage name={user.name} image={user.image} />
                 </div>
                 <span className="flex-1">{user.name}</span>
-                <span className="text-xs uppercase tracking-[0.3em] text-emerald-200/70 opacity-0 transition group-hover:opacity-100">
+                <span className="text-xs uppercase tracking-[0.3em] text-emerald-600 opacity-0 transition group-hover:opacity-100">
                   View
                 </span>
               </Link>
             ))
           ) : (
-            <div className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-6 text-center">
+            <div className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-6 text-center">
               <Image
                 unoptimized
                 width={48}
@@ -126,7 +126,7 @@ export default function UsersSearchModal() {
                 src="/images/flan.png"
                 alt="Flan mascot"
               />
-              <p className="text-sm font-medium text-slate-200">
+              <p className="text-sm font-medium text-slate-700">
                 No matching creators yet.
               </p>
             </div>

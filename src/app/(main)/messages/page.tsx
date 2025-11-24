@@ -53,14 +53,14 @@ export default function Messages() {
       {firstLoading && chats.length === 0 && <LoadingModal />}
       <section className="">
         {chats.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
-            <p className="text-xs uppercase tracking-[0.35em] text-slate-300">
+          <div className="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm backdrop-blur-xl">
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-600">
               Inbox is clear
             </p>
-            <h2 className="mt-4 text-2xl font-semibold text-white">
+            <h2 className="mt-4 text-2xl font-semibold text-slate-900">
               No conversations yet
             </h2>
-            <p className="mt-3 text-sm text-slate-300">
+            <p className="mt-3 text-sm text-slate-600">
               Start chatting by visiting profiles and sending a direct message.
             </p>
           </div>
@@ -81,10 +81,10 @@ export default function Messages() {
                 <Link
                   key={chat.id}
                   href={`/messages/${chat.id}`}
-                  className={`group flex items-center justify-between gap-4 sm:rounded-3xl border px-4 py-4 shadow-[0_25px_70px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl transition sm:px-6 ${
+                  className={`group flex items-center justify-between gap-4 sm:rounded-3xl border px-4 py-4 shadow-sm backdrop-blur-xl transition sm:px-6 ${
                     hasUnread
-                      ? "border-emerald-300/50 bg-emerald-400/10 text-white"
-                      : "border-white/10 bg-white/5 text-slate-100 hover:border-emerald-300/40 hover:bg-white/10"
+                      ? "border-emerald-200 bg-emerald-50 text-slate-900"
+                      : "border-slate-200 bg-white text-slate-800 hover:border-emerald-200 hover:bg-emerald-50"
                   }`}
                 >
                   <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default function Messages() {
                       </p>
                       <p
                         className={`mt-1 text-xs sm:text-sm ${
-                          hasUnread ? "text-emerald-100" : "text-slate-300"
+                          hasUnread ? "text-emerald-700" : "text-slate-600"
                         }`}
                       >
                         {lastMessage?.text
@@ -117,13 +117,13 @@ export default function Messages() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    {hasUnread && (
-                      <span className="rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-100">
-                        New
-                      </span>
-                    )}
-                    <span className="hidden items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-2 text-slate-300 transition group-hover:border-emerald-300/40 group-hover:bg-emerald-400/10 group-hover:text-emerald-200 sm:inline-flex">
+                    <div className="flex items-center gap-3">
+                      {hasUnread && (
+                        <span className="rounded-full bg-emerald-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-800">
+                          New
+                        </span>
+                      )}
+                      <span className="hidden items-center justify-center rounded-2xl border border-slate-200 bg-white p-2 text-slate-600 transition group-hover:border-emerald-200 group-hover:bg-emerald-50 group-hover:text-emerald-700 sm:inline-flex">
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"

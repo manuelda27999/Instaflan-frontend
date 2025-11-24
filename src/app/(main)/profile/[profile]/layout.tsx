@@ -104,12 +104,11 @@ export default function ProfileLayout({
       {!userProfile && !currentUserId && <LoadingModal />}
 
       <section className="">
-        <div className="relative overflow-hidden sm:rounded-3xl sm:mb-3 border border-white/10 bg-white/5 px-5 py-6 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-8 sm:py-8">
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-40 rounded-full bg-emerald-300/10 blur-3xl" />
+        <div className="relative overflow-hidden sm:rounded-3xl sm:mb-3 border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-8 sm:py-8">
           <div className="relative z-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               {userProfile && (
-                <span className="w-22 h-22 min-w-22 min-h-22 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]">
+                <span className="w-22 h-22 min-w-22 min-h-22 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(249,115,22,0.35)]">
                   <ProfileImage
                     name={userProfile.name}
                     image={userProfile.image}
@@ -117,10 +116,10 @@ export default function ProfileLayout({
                 </span>
               )}
               <div>
-                <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+                <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
                   {userProfile?.name}
                 </h2>
-                <p className="mt-2 max-w-xl text-sm text-slate-300 sm:text-base">
+                <p className="mt-2 max-w-xl text-sm text-slate-600 sm:text-base">
                   {userProfile?.description || "No bio yet – time to add one!"}
                 </p>
               </div>
@@ -130,18 +129,18 @@ export default function ProfileLayout({
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => openModal("followed-modal")}
-                  className="group inline-flex min-w-[6rem] flex-col items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-emerald-300/40 hover:bg-white/10"
+                  className="group inline-flex min-w-[6rem] flex-col items-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-700 transition hover:border-emerald-300/40 hover:bg-white"
                 >
-                  <span className="text-lg text-emerald-200">
+                  <span className="text-lg text-emerald-700">
                     {followerCount}
                   </span>
                   Followers
                 </button>
                 <button
                   onClick={() => openModal("following-modal")}
-                  className="group inline-flex min-w-[6rem] flex-col items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-emerald-300/40 hover:bg-white/10"
+                  className="group inline-flex min-w-[6rem] flex-col items-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-700 transition hover:border-emerald-300/40 hover:bg-white"
                 >
-                  <span className="text-lg text-emerald-200">
+                  <span className="text-lg text-emerald-700">
                     {followingCount}
                   </span>
                   Following
@@ -160,7 +159,7 @@ export default function ProfileLayout({
                       },
                     });
                   }}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
                 >
                   Edit profile
                 </button>
@@ -169,7 +168,7 @@ export default function ProfileLayout({
                   <button
                     onClick={handleFollowUser}
                     disabled={isPending}
-                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-teal-300 to-sky-300 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 shadow-lg transition hover:shadow-xl hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-sm transition hover:bg-emerald-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200 disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isPending
                       ? "Updating…"
@@ -180,7 +179,7 @@ export default function ProfileLayout({
                   <button
                     onClick={handleSendMessageModal}
                     disabled={isPending}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isPending ? "Opening…" : "Direct"}
                   </button>
@@ -190,23 +189,23 @@ export default function ProfileLayout({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:mb-3 sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_30px_90px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:mb-3 sm:rounded-3xl border border-slate-200 bg-white px-4 py-3 shadow-sm backdrop-blur-xl">
           <button
             onClick={() => router.push(`/profile/${userIdProfile}/posts`)}
-            className={`inline-flex items-center gap-2 rounded-full border  px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-emerald-200/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 ${
+            className={`inline-flex items-center gap-2 rounded-full border  px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-emerald-200/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 ${
               pathname.endsWith("/posts")
                 ? "bg-emerald-100/20 border-emerald-200/50"
-                : "bg-white/10 border-white/15"
+                : "bg-white border-slate-200"
             }`}
           >
             {currentUserId === userIdProfile ? "My posts" : "Profile posts"}
           </button>
           <button
             onClick={() => router.push(`/profile/${userIdProfile}/fav-posts`)}
-            className={`inline-flex items-center gap-2 rounded-full border  px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-emerald-100/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 ${
+            className={`inline-flex items-center gap-2 rounded-full border  px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-emerald-100/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 ${
               pathname.endsWith("/fav-posts")
                 ? "bg-emerald-100/20 border-emerald-200/50"
-                : "bg-white/10 border-white/15"
+                : "bg-white border-slate-200"
             }`}
           >
             {currentUserId === userIdProfile

@@ -143,7 +143,7 @@ export default function Chat() {
     <section className="relative flex flex-col items-center pb-16 ">
       {firstLoading && !currentUserId && <LoadingModal />}
 
-      <div className="fixed w-full sm:w-5/6 max-w-4xl sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-2 sm:py-3 shadow-[0_35px_120px_-70px_rgba(56,189,248,0.75)] backdrop-blur-xl sm:px-6">
+      <div className="fixed w-full sm:w-5/6 max-w-4xl sm:rounded-3xl border border-slate-200 bg-white px-4 py-2 sm:py-3 shadow-sm backdrop-blur-xl sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="flex -space-x-3">
@@ -163,12 +163,12 @@ export default function Chat() {
             <div>
               <Link
                 href={`/profile/${displayParticipants[0]?.id}/posts`}
-                className="text-sm font-semibold text-white sm:text-base hover:text-emerald-300"
+                className="text-sm font-semibold text-slate-900 sm:text-base hover:text-emerald-600"
               >
                 {displayParticipants.map((user) => user.name).join(", ") ||
                   "Conversation"}
               </Link>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-slate-600">
                 {displayParticipants.length > 1
                   ? "Group chat"
                   : "Direct message"}
@@ -178,7 +178,7 @@ export default function Chat() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
               type="button"
             >
               Back
@@ -195,10 +195,10 @@ export default function Chat() {
             return (
               <article
                 key={message.id}
-                className="flex justify-center text-xs italic text-slate-400"
+                className="flex justify-center text-xs italic text-slate-500"
               >
                 <span
-                  className={`rounded-full border border-white/10 bg-white/5 px-3 py-1 ${
+                  className={`rounded-full border border-slate-200 bg-white px-3 py-1 ${
                     isOwn ? "ml-auto" : "mr-auto"
                   }`}
                 >
@@ -226,10 +226,10 @@ export default function Chat() {
                   </span>
                 )} */}
                 <div
-                  className={`flex flex-col rounded-3xl border px-3 py-2 text-sm shadow-[0_25px_70px_-55px_rgba(56,189,248,0.8)] ${
+                  className={`flex flex-col rounded-3xl border px-3 py-2 text-sm shadow-sm ${
                     isOwn
                       ? "border-emerald-300/60 bg-gradient-to-r from-emerald-300/20 via-teal-300/20 to-sky-300/25 text-emerald-50"
-                      : "border-white/10 bg-white/5 text-slate-100"
+                      : "border-slate-200 bg-white text-slate-800"
                   }`}
                 >
                   <div className="flex flex-row">
@@ -245,7 +245,7 @@ export default function Chat() {
                           onClick={() =>
                             openModal("edit-delete-message", { message })
                           }
-                          className="ml-2 mr-[-4] mb-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 text-slate-200 transition hover:border-emerald-300/45 hover:bg-emerald-400/10 hover:text-emerald-100"
+                          className="ml-2 mr-[-4] mb-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-emerald-300/45 hover:bg-emerald-400/10 hover:text-emerald-100"
                           type="button"
                           aria-label="Edit or delete message"
                         >
@@ -266,7 +266,7 @@ export default function Chat() {
                     </div>
                   </div>
                   {message.edit && (
-                    <span className="text-[0.65rem] uppercase tracking-[0.3em] text-slate-300/80 ml-auto mt-2">
+                    <span className="text-[0.65rem] uppercase tracking-[0.3em] text-slate-600/80 ml-auto mt-2">
                       Edited
                     </span>
                   )}
@@ -281,12 +281,12 @@ export default function Chat() {
         onSubmit={handleSendMessage}
         className="fixed inset-x-0 bottom-21 sm:bottom-24 z-40 px-0.5 pb-0.5 sm:px-6"
       >
-        <div className="flex w-full max-w-4xl items-center gap-3 rounded-4xl sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-2 shadow-[0_30px_80px_-60px_rgba(56,189,248,0.7)] backdrop-blur-xl">
+        <div className="flex w-full max-w-4xl items-center gap-3 rounded-4xl sm:rounded-3xl border border-slate-200 bg-white px-4 py-2 shadow-sm backdrop-blur-xl">
           <input
             id="message"
             name="message"
             placeholder="Craft a sweet reply…"
-            className="flex-1 rounded-full border border-transparent bg-transparent px-3 py-1 sm:py-2 text-sm text-slate-100 placeholder:text-slate-400 focus:border-emerald-300/60 focus:outline-none focus:ring-0"
+            className="flex-1 rounded-full border border-transparent bg-transparent px-3 py-1 sm:py-2 text-sm text-slate-800 placeholder:text-slate-500 focus:border-emerald-300/60 focus:outline-none focus:ring-0"
             type="text"
             autoComplete="off"
           />

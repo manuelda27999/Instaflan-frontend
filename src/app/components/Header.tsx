@@ -46,9 +46,9 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-20 sm:pt-4 sm:px-6">
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between sm:rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 shadow-[0_35px_120px_-60px_rgba(56,189,248,0.6)] backdrop-blur-xl sm:px-6">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-between sm:rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm sm:px-6">
         <div className="flex items-center gap-4">
-          {/* <div className="h-12 w-12 hidden sm:flex items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-300/80 via-teal-300/70 to-sky-400/80 shadow-[0_12px_50px_-20px_rgba(56,189,248,0.8)]">
+          {/* <div className="h-12 w-12 hidden sm:flex items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-300/80 via-teal-300/70 to-sky-400/80 shadow-sm">
             {page === "Instaflan" ? (
               <Image
                 unoptimized
@@ -65,10 +65,10 @@ export default function Header() {
             )}
           </div> */}
           <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-slate-300/80 hidden sm:inline">
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-600/80 hidden sm:inline">
               {tagLine}
             </p>
-            <h1 className="text-lg font-semibold text-white sm:text-xl">
+            <h1 className="text-lg font-semibold text-slate-900 sm:text-xl">
               {page}
             </h1>
           </div>
@@ -78,7 +78,7 @@ export default function Header() {
           <button
             onClick={handleLogout}
             disabled={isPending}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/40 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isPending ? "Logging out..." : "Log out"}
           </button>

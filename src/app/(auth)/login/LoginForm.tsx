@@ -45,17 +45,14 @@ function LoginForm() {
       {isPending && <LoadingModal />}
       <form
         action={loginAction}
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/75 p-8 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.9)] backdrop-blur-xl transition duration-500 hover:border-white/20 sm:p-10"
+        className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition duration-200 sm:p-10"
       >
-        <div className="pointer-events-none absolute -top-20 right-[-4rem] h-48 w-48 rounded-full bg-emerald-300/20 blur-3xl animate-glow" />
-        <div className="pointer-events-none absolute bottom-[-6rem] left-[-2rem] h-72 w-72 rounded-full bg-sky-300/10 blur-3xl animate-float" />
-
         <div className="relative z-10 space-y-8">
           <header className="space-y-2 text-center sm:text-left">
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               Welcome back
             </h2>
-            <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
               Sign in to continue curating your feed and stay in sync with the
               community.
             </p>
@@ -64,7 +61,7 @@ function LoginForm() {
           <div className="space-y-6">
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-200"
+                className="text-sm font-medium text-slate-700"
                 htmlFor="email"
               >
                 Email address
@@ -76,7 +73,7 @@ function LoginForm() {
                   type="email"
                   autoComplete="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 transition focus:border-orange-200 focus:outline-none focus:ring-4 focus:ring-orange-100"
                   required
                 />
               </div>
@@ -84,7 +81,7 @@ function LoginForm() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-200"
+                className="text-sm font-medium text-slate-700"
                 htmlFor="password"
               >
                 Password
@@ -96,7 +93,7 @@ function LoginForm() {
                   type="password"
                   autoComplete="current-password"
                   placeholder="********"
-                  className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-base text-slate-100 placeholder:text-slate-400 transition focus:border-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 transition focus:border-orange-200 focus:outline-none focus:ring-4 focus:ring-orange-100"
                   required
                 />
               </div>
@@ -105,10 +102,10 @@ function LoginForm() {
 
           <SubmitButton pending={isPending} />
 
-          <p className="text-center text-xs text-slate-400 sm:text-left">
+          <p className="text-center text-xs text-slate-500 sm:text-left">
             By continuing you agree to our{" "}
-            <span className="text-slate-200">Terms</span> and{" "}
-            <span className="text-slate-200">Privacy Policy</span>.
+            <span className="text-slate-700">Terms</span> and{" "}
+            <span className="text-slate-700">Privacy Policy</span>.
           </p>
         </div>
       </form>
@@ -124,12 +121,9 @@ function SubmitButton({ pending }: { pending?: boolean }) {
     <button
       disabled={disabled}
       type="submit"
-      className="group relative mt-2 flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-300 via-teal-300 to-sky-300 px-5 py-3 text-lg font-semibold text-slate-900 shadow-lg transition duration-300 hover:shadow-xl hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
+      className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3 text-lg font-semibold text-white shadow-sm transition duration-200 hover:bg-orange-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-200 disabled:cursor-not-allowed disabled:opacity-70"
     >
-      <span className="absolute inset-0 bg-white/40 opacity-0 transition duration-300 group-hover:opacity-100" />
-      <span className="relative z-10">
-        {disabled ? "Signing in..." : "Sign in"}
-      </span>
+      <span>{disabled ? "Signing in..." : "Sign in"}</span>
     </button>
   );
 }

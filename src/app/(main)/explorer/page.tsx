@@ -151,19 +151,19 @@ export default function Explorer() {
         <LoadingModal />
       )}
       <section className="space-y-12">
-        <article className="space-y-6 sm:rounded-3xl border-y-2 sm:border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl sm:p-8">
+        <article className="space-y-6 sm:rounded-3xl border-y-2 sm:border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-xl sm:p-8">
           <header className="flex flex-wrap items-center justify-between gap-3 ">
             <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
+              <p className="text-xs uppercase tracking-[0.4em] text-slate-600">
                 Fresh connections
               </p>
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
+              <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
                 Creators you may know
               </h2>
             </div>
             <button
               onClick={handleUpdateUsers}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-300/40 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30"
             >
               {isUpdatingUsers ? "Updating…" : "Refresh"}
             </button>
@@ -174,7 +174,7 @@ export default function Explorer() {
               {users.map((user) => (
                 <div
                   key={user.id}
-                  className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-emerald-300/40 hover:bg-white/10"
+                  className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition hover:border-emerald-300/40 hover:bg-white"
                 >
                   <div className="flex items-center gap-3">
                     <Link
@@ -186,11 +186,11 @@ export default function Explorer() {
                     <div>
                       <Link
                         href={`profile/${user.id}/posts`}
-                        className="text-lg font-semibold text-white transition hover:text-emerald-200"
+                        className="text-lg font-semibold text-slate-900 transition hover:text-emerald-600"
                       >
                         {user.name}
                       </Link>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-500">
                         Tap to view their latest posts
                       </p>
                     </div>
@@ -208,8 +208,8 @@ export default function Explorer() {
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-6 py-10 text-center">
-              <p className="text-sm text-slate-300">
+            <div className="rounded-2xl border border-dashed border-slate-200 bg-white px-6 py-10 text-center">
+              <p className="text-sm text-slate-600">
                 You are already following every suggested creator. Check back
                 later for more!
               </p>
@@ -217,26 +217,26 @@ export default function Explorer() {
           )}
         </article>
 
-        <article className="sm:rounded-3xl sm:border border-y-2 border-white/10 bg-white/5 sm:p-6 shadow-[0_40px_120px_-70px_rgba(14,165,233,0.65)] backdrop-blur-xl">
-          <header className="flex flex-wrap items-center justify-between gap-3 py-6 px-3 shadow-[0_10px_20px_-12px_rgba(14,165,233,0.8)]">
+        <article className="sm:rounded-2xl border border-slate-200 bg-white shadow-sm sm:p-6">
+          <header className="flex flex-wrap items-center justify-between gap-3 py-6 px-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
+              <p className="text-xs uppercase tracking-[0.4em] text-slate-600">
                 Curated for you
               </p>
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
+              <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
                 Posts beyond your circle
               </h2>
             </div>
             <button
               onClick={handleUpdatePosts}
               disabled={isUpdatingPosts}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-emerald-300/40 hover:bg-white/15 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300/30 disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isUpdatingPosts ? "Updating…" : "Refresh"}
             </button>
           </header>
 
-          <div className="space-y-8">
+          <div className="sm:space-y-8">
             {posts.map((post, index) => (
               <Post
                 key={post.id}
