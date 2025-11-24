@@ -9,6 +9,7 @@ import retrieveNotifications from "@/lib/api/retrieveNotifications";
 import ProfileImage from "@/app/components/ProfileImage";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
+import { userContext } from "@/context/UserInfoContext";
 import LoadingModal from "@/app/components/modals/LoadingModal";
 
 interface Notification {
@@ -33,6 +34,7 @@ export default function Notifications() {
   const [isPendingOne, startTransitionOne] = useTransition();
   const [isPendingAll, startTransitionAll] = useTransition();
   const { openModal } = useModal();
+  const { updateUserInfo } = userContext();
 
   const loadNotifications = useCallback(() => {
     setLoading(true);
@@ -58,6 +60,7 @@ export default function Notifications() {
         .then(() => {
           loadNotifications();
           setIdNotificationToDelete(null);
+          updateUserInfo();
         })
         .catch((error: unknown) => {
           const message =
@@ -70,7 +73,10 @@ export default function Notifications() {
   const handleDeleteAllNotifications = () => {
     startTransitionAll(() => {
       deleteAllNotifications()
-        .then(() => loadNotifications())
+        .then(() => {
+          loadNotifications();
+          updateUserInfo();
+        })
         .catch((error: unknown) => {
           const message =
             error instanceof Error ? error.message : String(error);
