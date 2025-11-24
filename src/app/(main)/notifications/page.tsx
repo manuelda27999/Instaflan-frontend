@@ -27,7 +27,11 @@ interface Notification {
 export default function Notifications() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isPending, startTransition] = useTransition();
+  const [idNotificationToDelete, setIdNotificationToDelete] = useState<
+    string | null
+  >(null);
+  const [isPendingOne, startTransitionOne] = useTransition();
+  const [isPendingAll, startTransitionAll] = useTransition();
   const { openModal } = useModal();
 
   const loadNotifications = useCallback(() => {
@@ -48,9 +52,13 @@ export default function Notifications() {
   }, [loadNotifications]);
 
   const handleDeleteNotification = (notificationId: string) => {
-    startTransition(() => {
+    setIdNotificationToDelete(notificationId);
+    startTransitionOne(() => {
       deleteNotification(notificationId)
-        .then(() => loadNotifications())
+        .then(() => {
+          loadNotifications();
+          setIdNotificationToDelete(null);
+        })
         .catch((error: unknown) => {
           const message =
             error instanceof Error ? error.message : String(error);
@@ -60,7 +68,7 @@ export default function Notifications() {
   };
 
   const handleDeleteAllNotifications = () => {
-    startTransition(() => {
+    startTransitionAll(() => {
       deleteAllNotifications()
         .then(() => loadNotifications())
         .catch((error: unknown) => {
@@ -75,9 +83,9 @@ export default function Notifications() {
     <>
       {loading && notifications.length === 0 && <LoadingModal />}
 
-      <section className="space-y-6 pb-16">
+      <section className="">
         {notifications.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
+          <div className="sm:rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-[0_40px_120px_-70px_rgba(56,189,248,0.7)] backdrop-blur-xl">
             <p className="text-xs uppercase tracking-[0.4em] text-slate-300">
               All quiet
             </p>
@@ -91,7 +99,31 @@ export default function Notifications() {
           </div>
         ) : (
           <>
-            <div className="space-y-4">
+            <div className="flex justify-center py-4">
+              <button
+                onClick={handleDeleteAllNotifications}
+                disabled={isPendingAll}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-slate-100 transition hover:border-rose-300/50 hover:bg-rose-400/10 hover:text-rose-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-rose-300/30 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isPendingAll ? "Cleaning…" : "Clear all"}
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                >
+                  <path d="M5 7h14" />
+                  <path d="M10 11v6" />
+                  <path d="M14 11v6" />
+                  <path d="M6 7l1 12a1.5 1.5 0 001.5 1.5h7a1.5 1.5 0 001.5-1.5l1-12" />
+                  <path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7" />
+                </svg>
+              </button>
+            </div>
+            <div className="sm:space-y-4">
               {notifications.map((notification) => {
                 const isFollow = notification.text === "Follow";
                 const isLike = notification.text === "Like";
@@ -100,7 +132,7 @@ export default function Notifications() {
                 return (
                   <article
                     key={notification.id}
-                    className="flex items-center gap-4 rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_20px_70px_-50px_rgba(56,189,248,0.6)] backdrop-blur-xl transition hover:border-emerald-300/40 hover:bg-white/10 sm:px-6"
+                    className="flex items-center gap-4 sm:rounded-3xl border border-white/10 bg-white/5 px-4 py-3 shadow-[0_20px_70px_-50px_rgba(56,189,248,0.6)] backdrop-blur-xl transition hover:border-emerald-300/40 hover:bg-white/10 sm:px-6"
                   >
                     <Link
                       href={`/profile/${notification.user.id}/posts`}
@@ -152,49 +184,32 @@ export default function Notifications() {
                       className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-200 transition hover:border-rose-300/50 hover:bg-rose-400/10 hover:text-rose-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/40"
                       aria-label="Delete notification"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4"
-                      >
-                        <path d="M5 7h14" />
-                        <path d="M10 11v6" />
-                        <path d="M14 11v6" />
-                        <path d="M6 7l1 12a1.5 1.5 0 001.5 1.5h7a1.5 1.5 0 001.5-1.5l1-12" />
-                        <path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7" />
-                      </svg>
+                      {isPendingOne &&
+                      idNotificationToDelete === notification.id ? (
+                        <div className="p-2">
+                          <p className="loader-small"></p>
+                        </div>
+                      ) : (
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-6 w-6"
+                        >
+                          <path d="M5 7h14" />
+                          <path d="M10 11v6" />
+                          <path d="M14 11v6" />
+                          <path d="M6 7l1 12a1.5 1.5 0 001.5 1.5h7a1.5 1.5 0 001.5-1.5l1-12" />
+                          <path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7" />
+                        </svg>
+                      )}
                     </button>
                   </article>
                 );
               })}
-            </div>
-
-            <div className="flex justify-center pt-4">
-              <button
-                onClick={handleDeleteAllNotifications}
-                disabled={isPending}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-slate-100 transition hover:border-rose-300/50 hover:bg-rose-400/10 hover:text-rose-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-rose-300/30 disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {isPending ? "Cleaning…" : "Clear all"}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-4 w-4"
-                >
-                  <path d="M4 7h16" />
-                  <path d="M10 11v6" />
-                  <path d="M14 11v6" />
-                  <path d="M6 7l1 12a1.5 1.5 0 001.5 1.5h7A1.5 1.5 0 0017 19l1-12" />
-                </svg>
-              </button>
             </div>
           </>
         )}
