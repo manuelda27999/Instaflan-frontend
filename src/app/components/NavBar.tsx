@@ -18,7 +18,6 @@ interface UserInfo {
 export default function NavBar() {
   const pathname = usePathname();
   const [user, setUser] = useState<UserInfo | null>(null);
-  console.log("UserInfo in NavBar:", user);
 
   const { userInfo, updateUserInfo } = useUserContext();
 

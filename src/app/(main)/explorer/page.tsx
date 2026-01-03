@@ -179,7 +179,7 @@ export default function Explorer() {
                   <div className="flex items-center gap-3">
                     <Link
                       href={`profile/${user.id}/posts`}
-                      className="h-16 w-16 rounded-full overflow-hidden border border-emerald-300/50 shadow-[0_0_30px_-12px_rgba(52,211,153,0.8)]"
+                      className="h-16 w-16 rounded-full overflow-hidden border border-emerald-300/50"
                     >
                       <ProfileImage name={user.name} image={user.image} />
                     </Link>

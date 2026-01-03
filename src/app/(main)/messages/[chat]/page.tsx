@@ -31,7 +31,6 @@ export default function Chat() {
   const [firstLoading, setFirstLoading] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  console.log(isMobile);
   const [isPending, startTransition] = useTransition();
 
   const pathname = usePathname();
